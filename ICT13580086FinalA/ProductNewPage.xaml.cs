@@ -27,6 +27,11 @@ namespace ICT13580086FinalA
             statuslovePicker.Items.Add("โสด");
             statuslovePicker.Items.Add("อย่าร้าง");
 
+            if(product != null)
+            {
+                nameEntry.Text = product.Name;
+            }
+
         }
 
         async void SaveButton_Clicked(object sender, EventArgs e)
@@ -51,6 +56,22 @@ namespace ICT13580086FinalA
                     product.Saraly = decimal.Parse(salaryEntry.Text);
                     var id = App.DbHelper.AddProduct(product);
                     await DisplayAlert("บันทึกสำเรจ", "รหัสของท่านคือ " + id, "ตกลง");
+                }
+                else
+                {
+					product.Name = nameEntry.Text;
+					product.LastName = surnameEntry.Text;
+					product.Age = int.Parse(ageEntry.Text);
+					product.Sex = sexPicker.SelectedItem.ToString();
+					product.Department = departEntry.Text;
+					product.Phone = phoneEntry.Text;
+					product.Email = emailEntry.Text;
+					product.Address = addressEditor.Text;
+					product.Status = statuslovePicker.SelectedItem.ToString();
+					product.Baby = babyEntry.Text;
+					product.Saraly = decimal.Parse(salaryEntry.Text);
+					var id = App.DbHelper.UpdateProduct(product);
+					await DisplayAlert("บันทึกสำเรจ", "แก้ไขข้อมูลบุคคล" + id, "ตกลง");
                 }
                 await Navigation.PopModalAsync();
             }

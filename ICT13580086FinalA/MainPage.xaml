@@ -21,6 +21,21 @@
                     Text="{Binding Name}"
                     Detail="{Binding Department}">
 
+                    <TextCell.ContextActions>
+                        
+                    <MenuItem
+                        Text="Edit"
+                        CommandParameter="{Binding .}"
+                        Clicked="Edite_Clicked"/>
+
+                        <MenuItem
+                        Text="Delete"
+                        CommandParameter="{Binding .}"
+                        IsDestructive="false"
+                        Clicked="Delete_Clicked"/>
+                        
+                    </TextCell.ContextActions>
+
                 </TextCell>
             </DataTemplate>
         </ListView.ItemTemplate>
